@@ -1,267 +1,5 @@
 import Foundation
 
-// MARK: - User Role
-enum UserRoleType: String, CaseIterable {
-    case userBuyer = "Pembeli"
-    case cooperative = "Koperasi Dusun"
-    case labMitra = "Laboratorium Mitra"
-    case admin = "Admin Sistem"
-}
-
-// MARK: - Coffee Lot
-struct CoffeeLot: Identifiable, Hashable {
-    let id: String
-    let cooperativeCode: String
-    let title: String
-    let originDusun: String
-    let province: String
-    let processType: String
-    let pricePerKg: Double
-    let availableKg: Int
-    let cuppingScore: Double
-    let sniGrade: String
-    let isHalalCertified: Bool
-    let imageName: String
-    let labCertificate: LabCertificate?
-
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
-    }
-
-    static func == (lhs: CoffeeLot, rhs: CoffeeLot) -> Bool {
-        lhs.id == rhs.id
-    }
-}
-
-// MARK: - Lab Certificate
-struct LabCertificate: Identifiable {
-    let id: String
-    let certCode: String
-    let barcodeString: String
-    let moisturePercent: Double
-    let densityGml: Double
-    let defectCount: Int
-    let sniGrade: String
-    let isHalalCertified: Bool
-    let halalCertificateNumber: String
-    let tanyakanPadaAiContext: String
-
-    // SCA Score Breakdown
-    let scaTotal: Double
-    let scaRasa: Double
-    let scaKeseimbangan: Double
-    let scaBody: Double
-    let scaKeasaman: Double
-    let scaAroma: Double
-    let scaAftertaste: Double
-}
-
-// MARK: - Order
-struct Order: Identifiable {
-    let id: String
-    let orderNumber: String
-    let productName: String
-    let status: OrderStatus
-    let quantityKg: Int
-    let estimatedDate: String
-    let totalPrice: Double
-    let imageName: String
-    let cooperativeName: String
-}
-
-enum OrderStatus: String, CaseIterable {
-    case inTransit = "Dalam Perjalanan"
-    case processing = "Diproses"
-    case completed = "Selesai"
-    case cancelled = "Dibatalkan"
-
-    var icon: String {
-        switch self {
-        case .inTransit: return "shippingbox.fill"
-        case .processing: return "doc.text.fill"
-        case .completed: return "checkmark.circle.fill"
-        case .cancelled: return "xmark.circle.fill"
-        }
-    }
-
-    var displayColor: String {
-        switch self {
-        case .inTransit: return "amberGold"
-        case .processing: return "emeraldGreen"
-        case .completed: return "scientificCyan"
-        case .cancelled: return "destructiveRed"
-        }
-    }
-}
-
-// MARK: - Chat Conversation
-struct ChatConversation: Identifiable {
-    let id: String
-    let name: String
-    let lastMessage: String
-    let timestamp: String
-    let unreadCount: Int
-    let isOnline: Bool
-    let avatarSystemName: String
-    let isRead: Bool
-}
-
-// MARK: - Chat Message
-struct ChatMessage: Identifiable {
-    let id: String
-    let text: String
-    let isFromMe: Bool
-    let timestamp: String
-    let isRead: Bool
-    let attachment: ChatAttachment?
-}
-
-struct ChatAttachment {
-    let fileName: String
-    let subtitle: String
-    let fileSize: String
-    let fileType: String
-}
-
-// MARK: - Coffee Review
-struct CoffeeReview: Identifiable {
-    let id: String
-    let reviewerName: String
-    let reviewerSubtitle: String
-    let rating: Double
-    let text: String
-}
-
-// MARK: - RBF Info
-struct RBFTransparencyInfo {
-    let totalContributionPercent: Double
-    let pricePerKg: Double
-    let farmerCooperativeSharePercent: Double
-    let farmerCooperativeSharePerKg: Double
-    let rbfRepaymentPercent: Double
-    let rbfRepaymentPerKg: Double
-    let rbfRepaymentLabel: String
-}
-
-// MARK: - Cooperative Models
-struct CoopMember: Identifiable {
-    let id: String
-    let name: String
-    let memberId: String
-    let phone: String
-    let isActive: Bool
-    let avatarImage: String
-}
-
-struct RepaymentItem: Identifiable {
-    let id: String
-    let title: String
-    let date: String
-    let amount: Double
-    let isCompleted: Bool
-}
-
-struct CoopLoan: Identifiable {
-    let id: String
-    let borrowerName: String
-    let borrowerAvatar: String
-    let status: String
-    let remainingAmount: Double
-    let totalAmount: Double
-    let purpose: String
-    let period: String
-    let repayments: [RepaymentItem]
-}
-
-struct CoopOrder: Identifiable {
-    let id: String
-    let orderNumber: String
-    let productName: String
-    let buyerUsername: String
-    let status: OrderStatus
-    let quantityKg: Int
-    let deadline: String
-    let requestDate: String
-    let totalRevenue: Double
-    let imageName: String
-}
-
-// MARK: - Lab Models
-struct LabRequest: Identifiable {
-    let id: String
-    let reqNumber: String
-    let title: String
-    let dateSubmitted: String
-    let cooperative: String
-    let variety: String
-    let sampleWeight: String
-    let testTypes: [String]
-    let imageName: String
-}
-
-struct LabProcessingItem: Identifiable {
-    let id: String
-    let sampleNumber: String
-    let title: String
-    let cooperative: String
-    let variety: String
-    let weight: String
-    let dateSubmitted: String
-    let dateReceived: String
-    let status: String
-    let imageName: String
-}
-
-
-
-
-// MARK: - Member Commodity Request
-struct MemberCommodityRequest: Identifiable {
-    let id: String
-    let memberName: String
-    let memberAvatar: String
-    let variety: String
-    let quantityKg: Int
-    let processType: String
-    let dateSubmitted: String
-    let status: CommodityRequestStatus
-}
-
-enum CommodityRequestStatus: String, CaseIterable {
-    case pending = "Menunggu Proses"
-    case approved = "Disetujui"
-    case rejected = "Ditolak"
-    case testing = "Sedang Uji Lab"
-    case tested = "Selesai Uji Lab"
-    
-    var colorName: String {
-        switch self {
-        case .pending: return "amberGold"
-        case .approved: return "emeraldGreen"
-        case .rejected: return "destructiveRed"
-        case .testing: return "scientificCyan"
-        case .tested: return "emeraldGreen"
-        }
-    }
-}
-
-// MARK: - Coop Lab Test Item
-struct CoopLabTestItem: Identifiable {
-    let id: String
-    let reqNumber: String
-    let variety: String
-    let dateSubmitted: String
-    let status: String
-    let certificate: LabCertificate?
-}
-
-
-// MARK: - Filter Origin
-struct FilterOrigin: Identifiable, Hashable {
-    let id: String
-    let name: String
-}
-
 // MARK: - ============================================================
 // MARK: - SAMPLE DATA
 // MARK: - ============================================================
@@ -336,6 +74,26 @@ enum SampleData {
         scaKeasaman: 8.25,
         scaAroma: 8.5,
         scaAftertaste: 8.0
+    )
+    
+    static let kintamaniCertificate = LabCertificate(
+        id: "cert-004",
+        certCode: "KODAM-CERT-2026-04",
+        barcodeString: "KODAM-KINT-2026-002",
+        moisturePercent: 11.0,
+        densityGml: 0.69,
+        defectCount: 3,
+        sniGrade: "Grade 1",
+        isHalalCertified: true,
+        halalCertificateNumber: "ID-HALAL-2024-150",
+        tanyakanPadaAiContext: "Lot kopi Kintamani Washed memiliki aroma citrus yang kuat. Kadar air 11.0% dan defect 3 biji menjadikannya kopi grade spesialti yang sangat baik.",
+        scaTotal: 85.5,
+        scaRasa: 8.5,
+        scaKeseimbangan: 8.5,
+        scaBody: 8.0,
+        scaKeasaman: 9.0,
+        scaAroma: 8.75,
+        scaAftertaste: 8.25
     )
 
     // MARK: Coffee Lots
@@ -415,6 +173,21 @@ enum SampleData {
             imageName: "malabar_beans",
             labCertificate: nil
         ),
+        CoffeeLot(
+            id: "lot-006",
+            cooperativeCode: "KOP-KINT-002",
+            title: "Bali Kintamani Washed",
+            originDusun: "Kintamani",
+            province: "Bali",
+            processType: "Washed",
+            pricePerKg: 165000,
+            availableKg: 200,
+            cuppingScore: 85.5,
+            sniGrade: "Grade 1",
+            isHalalCertified: true,
+            imageName: "kintamani_beans",
+            labCertificate: kintamaniCertificate
+        )
     ]
 
     // MARK: Orders
@@ -452,6 +225,17 @@ enum SampleData {
             imageName: "bajawa_beans",
             cooperativeName: "Koperasi Bajawa"
         ),
+        Order(
+            id: "ord-004",
+            orderNumber: "KD-8902",
+            productName: "Bali Kintamani\nWashed",
+            status: .processing,
+            quantityKg: 150,
+            estimatedDate: "Oct 20",
+            totalPrice: 24750000,
+            imageName: "kintamani_beans",
+            cooperativeName: "Koperasi Kintamani"
+        )
     ]
 
     // MARK: Chat Conversations
@@ -496,6 +280,16 @@ enum SampleData {
             avatarSystemName: "flask.fill",
             isRead: true
         ),
+        ChatConversation(
+            id: "chat-005",
+            name: "Koperasi Kintamani",
+            lastMessage: "Kami siap mengirimkan pesanan ...",
+            timestamp: "Baru saja",
+            unreadCount: 1,
+            isOnline: true,
+            avatarSystemName: "person.crop.circle.fill",
+            isRead: false
+        )
     ]
 
     // MARK: Chat Messages (for detail view)
@@ -554,6 +348,13 @@ enum SampleData {
             rating: 5.0,
             text: "Profil rasa yang sangat clean dan bright. Cocok untuk pour over dan espresso blend premium kami."
         ),
+        CoffeeReview(
+            id: "rev-004",
+            reviewerName: "Cinta Kopi",
+            reviewerSubtitle: "Penikmat Kopi",
+            rating: 4.9,
+            text: "Luar biasa, pengiriman cepat dan kualitas beans terjaga. Sangat merekomendasikan supplier ini."
+        )
     ]
 
     // MARK: RBF Info
@@ -638,12 +439,14 @@ enum SampleData {
         CoopMember(id: "2", name: "Siti Aminah", memberId: "KOP-2023-042", phone: "+62 813 9876 5432", isActive: true, avatarImage: "person.circle.fill"),
         CoopMember(id: "3", name: "Agus Setiawan", memberId: "KOP-2022-115", phone: "+62 856 1234 9876", isActive: false, avatarImage: "person.circle.fill"),
         CoopMember(id: "4", name: "Reza Pratama", memberId: "KOP-2024-018", phone: "+62 811 5555 2222", isActive: true, avatarImage: "person.circle.fill"),
-        CoopMember(id: "5", name: "Diana Susanti", memberId: "KOP-2021-089", phone: "+62 812 9988 7766", isActive: true, avatarImage: "person.circle.fill")
+        CoopMember(id: "5", name: "Diana Susanti", memberId: "KOP-2021-089", phone: "+62 812 9988 7766", isActive: true, avatarImage: "person.circle.fill"),
+        CoopMember(id: "6", name: "Joko Widodo", memberId: "KOP-2023-112", phone: "+62 811 1111 2222", isActive: true, avatarImage: "person.circle.fill")
     ]
 
     static let coopOrders: [CoopOrder] = [
         CoopOrder(id: "o1", orderNumber: "ORD-8892-A", productName: "Kopi Arabika Premium", buyerUsername: "@warungkopi", status: .inTransit, quantityKg: 500, deadline: "30 Okt", requestDate: "24 Okt", totalRevenue: 12500000, imageName: "gayo_beans"),
-        CoopOrder(id: "o2", orderNumber: "ORD-8893-B", productName: "Kopi Arabika Premium", buyerUsername: "@kedaikopikita", status: .processing, quantityKg: 120, deadline: "02 Nov", requestDate: "25 Okt", totalRevenue: 4200000, imageName: "gayo_beans")
+        CoopOrder(id: "o2", orderNumber: "ORD-8893-B", productName: "Kopi Arabika Premium", buyerUsername: "@kedaikopikita", status: .processing, quantityKg: 120, deadline: "02 Nov", requestDate: "25 Okt", totalRevenue: 4200000, imageName: "gayo_beans"),
+        CoopOrder(id: "o3", orderNumber: "ORD-8894-C", productName: "Kopi Robusta Fine", buyerUsername: "@robusta_lover", status: .completed, quantityKg: 300, deadline: "15 Okt", requestDate: "10 Okt", totalRevenue: 9000000, imageName: "toraja_beans")
     ]
 
     static let coopLoans: [CoopLoan] = [
@@ -661,6 +464,21 @@ enum SampleData {
                 RepaymentItem(id: "r2", title: "Pembayaran Bulan 1", date: "15 Okt 2023", amount: 2083333, isCompleted: true),
                 RepaymentItem(id: "r3", title: "Pencairan Dana", date: "01 Okt 2023", amount: 25000000, isCompleted: true)
             ]
+        ),
+        CoopLoan(
+            id: "l2",
+            borrowerName: "Siti Aminah",
+            borrowerAvatar: "person.circle.fill",
+            status: "Aktif",
+            remainingAmount: 5000000,
+            totalAmount: 10000000,
+            purpose: "Perbaikan Mesin Pengupas Kopi",
+            period: "6 Bulan (Sep 2023 - Feb 2024)",
+            repayments: [
+                RepaymentItem(id: "r4", title: "Pembayaran Bulan 3", date: "15 Des 2023", amount: 1666666, isCompleted: false),
+                RepaymentItem(id: "r5", title: "Pembayaran Bulan 2", date: "15 Nov 2023", amount: 1666666, isCompleted: true),
+                RepaymentItem(id: "r6", title: "Pembayaran Bulan 1", date: "15 Okt 2023", amount: 1666666, isCompleted: true)
+            ]
         )
     ]
 
@@ -668,12 +486,14 @@ enum SampleData {
     static let memberRequests: [MemberCommodityRequest] = [
         MemberCommodityRequest(id: "req-01", memberName: "Budi Santoso", memberAvatar: "person.circle.fill", variety: "Arabica Gayo", quantityKg: 500, processType: "Full Washed", dateSubmitted: "12 Okt 2026", status: .pending),
         MemberCommodityRequest(id: "req-02", memberName: "Siti Rahma", memberAvatar: "person.crop.circle.fill", variety: "Arabica Gayo", quantityKg: 200, processType: "Natural", dateSubmitted: "11 Okt 2026", status: .testing),
-        MemberCommodityRequest(id: "req-03", memberName: "Agus Setiawan", memberAvatar: "person.circle", variety: "Arabica Gayo", quantityKg: 150, processType: "Honey", dateSubmitted: "09 Okt 2026", status: .tested)
+        MemberCommodityRequest(id: "req-03", memberName: "Agus Setiawan", memberAvatar: "person.circle", variety: "Arabica Gayo", quantityKg: 150, processType: "Honey", dateSubmitted: "09 Okt 2026", status: .tested),
+        MemberCommodityRequest(id: "req-04", memberName: "Joko Widodo", memberAvatar: "person.circle.fill", variety: "Robusta Temanggung", quantityKg: 300, processType: "Natural", dateSubmitted: "13 Okt 2026", status: .pending)
     ]
     
     // MARK: Coop Lab Tests
     static let coopLabTests: [CoopLabTestItem] = [
         CoopLabTestItem(id: "test-01", reqNumber: "LAB-26-001", variety: "Arabica Gayo - Full Washed", dateSubmitted: "10 Okt 2026", status: "Selesai", certificate: gayoCertificate),
-        CoopLabTestItem(id: "test-02", reqNumber: "LAB-26-002", variety: "Arabica Gayo - Natural", dateSubmitted: "12 Okt 2026", status: "Diproses", certificate: nil)
+        CoopLabTestItem(id: "test-02", reqNumber: "LAB-26-002", variety: "Arabica Gayo - Natural", dateSubmitted: "12 Okt 2026", status: "Diproses", certificate: nil),
+        CoopLabTestItem(id: "test-03", reqNumber: "LAB-26-003", variety: "Arabica Bali - Washed", dateSubmitted: "14 Okt 2026", status: "Menunggu", certificate: nil)
     ]
 }
