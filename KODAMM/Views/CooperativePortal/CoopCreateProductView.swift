@@ -10,6 +10,11 @@ struct CoopCreateProductView: View {
     @State private var selectedGrade = "Grade 1"
     @State private var selectedPrice: Double? = nil
     
+    // CoreML Prediction State
+    @State private var isPredicting = true
+    @State private var aiRecommendedPrice: Double? = nil
+    @State private var predictionError: String? = nil
+    
     var body: some View {
         ZStack(alignment: .top) {
             KODAMTheme.warmIvory.ignoresSafeArea()
@@ -125,29 +130,41 @@ struct CoopCreateProductView: View {
                                     .lineSpacing(4)
                                 
                                 HStack {
-                                    VStack(alignment: .leading, spacing: 2) {
-                                        Text("Harga Optimal")
+                                    if isPredicting {
+                                        ProgressView()
+                                            .padding(.trailing, KODAMTheme.spacingSM)
+                                        Text("AI sedang menganalisis pasar global...")
                                             .font(KODAMFonts.body(.captionSmall))
                                             .foregroundStyle(KODAMTheme.textSecondary)
-                                        Text("Rp. 92.500 / kg")
-                                            .font(KODAMFonts.heading(.title2))
-                                            .foregroundStyle(KODAMTheme.espressoAccent)
-                                    }
-                                    
-                                    Spacer()
-                                    
-                                    Button {
-                                        selectedPrice = 92500
-                                    } label: {
-                                        Text("Terapkan")
-                                            .font(KODAMFonts.body(.caption))
-                                            .foregroundStyle(KODAMTheme.espressoAccent)
-                                            .padding(.horizontal, KODAMTheme.spacingMD)
-                                            .padding(.vertical, KODAMTheme.spacingSM)
-                                            .background(
-                                                Capsule()
-                                                    .fill(KODAMTheme.highlightLight)
-                                            )
+                                    } else if let error = predictionError {
+                                        Text("Gagal memuat harga AI: \(error)")
+                                            .font(KODAMFonts.body(.captionSmall))
+                                            .foregroundStyle(.red)
+                                    } else if let price = aiRecommendedPrice {
+                                        VStack(alignment: .leading, spacing: 2) {
+                                            Text("Harga Optimal")
+                                                .font(KODAMFonts.body(.captionSmall))
+                                                .foregroundStyle(KODAMTheme.textSecondary)
+                                            Text("Rp. \(Int(price).formatted()) / kg")
+                                                .font(KODAMFonts.heading(.title2))
+                                                .foregroundStyle(KODAMTheme.espressoAccent)
+                                        }
+                                        
+                                        Spacer()
+                                        
+                                        Button {
+                                            selectedPrice = price
+                                        } label: {
+                                            Text("Terapkan")
+                                                .font(KODAMFonts.body(.caption))
+                                                .foregroundStyle(KODAMTheme.espressoAccent)
+                                                .padding(.horizontal, KODAMTheme.spacingMD)
+                                                .padding(.vertical, KODAMTheme.spacingSM)
+                                                .background(
+                                                    Capsule()
+                                                        .fill(KODAMTheme.highlightLight)
+                                                )
+                                        }
                                     }
                                 }
                                 .padding(KODAMTheme.spacingMD)
@@ -211,6 +228,17 @@ struct CoopCreateProductView: View {
             }
         }
         .navigationBarHidden(true)
+        .task {
+            do {
+                isPredicting = true
+                let price = try await PricePredictionService.shared.predictCoffeePrice()
+                // The ML Model might predict something realistic but if we want to ensure it looks good we might want to round it up
+                aiRecommendedPrice = price
+            } catch {
+                predictionError = error.localizedDescription
+            }
+            isPredicting = false
+        }
     }
 }
 
