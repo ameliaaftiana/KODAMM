@@ -1,17 +1,11 @@
-//
-//  KODAMMApp.swift
-//  KODAMM
-//
-//  Created by Amelia Putri Aftiana on 11/07/26.
-//
-
 import SwiftUI
 
 @main
-struct KODAMMApp: App {
+struct KODAMApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .preferredColorScheme(.light)
         }
     }
 }
