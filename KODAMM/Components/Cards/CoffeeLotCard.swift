@@ -8,33 +8,15 @@ struct CoffeeLotCard: View {
     var onTap: (() -> Void)? = nil
 
     var body: some View {
-        Button {
-            onTap?()
-        } label: {
-            VStack(alignment: .leading, spacing: 0) {
+        VStack(alignment: .leading, spacing: 0) {
                 // MARK: Image + Badge Overlays
                 ZStack(alignment: .bottom) {
-                    // Coffee bean image placeholder
-                    RoundedRectangle(cornerRadius: KODAMTheme.radiusLG)
-                        .fill(
-                            LinearGradient(
-                                colors: [
-                                    KODAMTheme.coffeeGradientStart,
-                                    KODAMTheme.coffeeGradientEnd,
-                                    KODAMTheme.coffeeGradientMid,
-                                ],
-                                startPoint: .topLeading,
-                                endPoint: .bottomTrailing
-                            )
-                        )
+                    // Coffee bean image
+                    Image(lot.imageName)
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
                         .frame(height: 200)
-                        .overlay {
-                            // Texture pattern for coffee beans
-                            Image(systemName: "leaf.fill")
-                                .font(KODAMFonts.heading(.largeTitle))
-                                .foregroundStyle(.white.opacity(0.1))
-                                .rotationEffect(.degrees(-15))
-                        }
+                        .clipShape(RoundedRectangle(cornerRadius: KODAMTheme.radiusLG))
 
                     // SCA Score badge (top-right)
                     VStack {
@@ -122,8 +104,6 @@ struct CoffeeLotCard: View {
             .background(KODAMTheme.cardWhite)
             .clipShape(RoundedRectangle(cornerRadius: KODAMTheme.radiusLG))
             .shadow(color: KODAMTheme.obsidianDark.opacity(0.06), radius: 8, x: 0, y: 2)
-        }
-        .buttonStyle(.plain)
     }
 }
 

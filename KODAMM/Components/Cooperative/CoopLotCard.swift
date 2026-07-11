@@ -7,25 +7,11 @@ struct CoopLotCard: View {
     var body: some View {
         GlassCard(padding: 0) {
             VStack(alignment: .leading, spacing: 0) {
-                // Image Placeholder
-                Rectangle()
-                    .fill(
-                        LinearGradient(
-                            colors: [
-                                KODAMTheme.coffeeGradientStart,
-                                KODAMTheme.coffeeGradientEnd
-                            ],
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
-                        )
-                    )
+                Image(lot.imageName)
+                    .resizable()
+                    .scaledToFill()
                     .frame(height: 140)
-                    .overlay {
-                        Image(systemName: "leaf.fill")
-                            .font(KODAMFonts.heading(.largeTitle))
-                            .foregroundStyle(.white.opacity(0.1))
-                            .rotationEffect(.degrees(-15))
-                    }
+                    .clipped()
                 
                 VStack(alignment: .leading, spacing: KODAMTheme.spacingSM) {
                     // Header: ID + Badge + Menu

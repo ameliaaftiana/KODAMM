@@ -21,6 +21,17 @@ struct BuyerProductDetailView: View {
                     heroImageSection
 
                     VStack(spacing: KODAMTheme.spacingXL) {
+                        // MARK: Title Section
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text(lot.title)
+                                .font(KODAMFonts.heading(.largeTitle))
+                                .foregroundStyle(KODAMTheme.textPrimary)
+                            Text("\(lot.originDusun), \(lot.province) • \(lot.processType)")
+                                .font(KODAMFonts.body(.body))
+                                .foregroundStyle(KODAMTheme.textSecondary)
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+
                         // MARK: Lab Analysis Card
                         if let cert = lot.labCertificate {
                             labAnalysisSection(cert)
@@ -48,6 +59,9 @@ struct BuyerProductDetailView: View {
                         // MARK: Reviews
                         reviewsSection
 
+                        // MARK: Purchase Options
+                        purchaseOptionsSection
+
                         // Bottom spacing for purchase bar
                         Spacer(minLength: 120)
                     }
@@ -69,29 +83,12 @@ struct BuyerProductDetailView: View {
     // MARK: - Hero Image Section
     private var heroImageSection: some View {
         ZStack(alignment: .bottomLeading) {
-            Rectangle()
-                .fill(
-                    LinearGradient(
-                        colors: [KODAMTheme.coffeeGradientStart, KODAMTheme.coffeeGradientMid, KODAMTheme.coffeeGradientEnd],
-                        startPoint: .topLeading,
-                        endPoint: .bottomTrailing
-                    )
-                )
+            Image(lot.imageName)
+                .resizable()
+                .aspectRatio(contentMode: .fill)
                 .frame(height: 280)
-                .overlay {
-                    // Decorative coffee plant overlay
-                    VStack {
-                        Spacer()
-                        HStack {
-                            Spacer()
-                            Image(systemName: "leaf.fill")
-                                .font(KODAMFonts.heading(.largeTitle))
-                                .foregroundStyle(.white.opacity(0.08))
-                                .rotationEffect(.degrees(25))
-                                .offset(x: 20, y: 20)
-                        }
-                    }
-                }
+                .clipped()
+                .overlay(Color.black.opacity(0.1))
 
             // Badges overlay
             HStack(spacing: KODAMTheme.spacingXS) {
@@ -496,59 +493,89 @@ struct BuyerProductDetailView: View {
         }
     }
 
+    // MARK: - Purchase Options Section
+    private var purchaseOptionsSection: some View {
+        GlassCard(padding: KODAMTheme.spacingMD) {
+            VStack(alignment: .leading, spacing: KODAMTheme.spacingLG) {
+                Text("Opsi Pembelian")
+                    .font(KODAMFonts.heading(.title3))
+                    .foregroundStyle(KODAMTheme.textPrimary)
+                
+                HStack {
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text("HARGA /KG")
+                            .font(KODAMFonts.body(.captionSmall))
+                            .foregroundStyle(KODAMTheme.textTertiary)
+                        Text(lot.pricePerKg.formattedRupiah())
+                            .font(KODAMFonts.heading(.title2))
+                            .foregroundStyle(KODAMTheme.textPrimary)
+                    }
+                    Spacer()
+                }
+
+                HStack {
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text("JUMLAH (MIN 100 KG)")
+                            .font(KODAMFonts.body(.captionSmall))
+                            .foregroundStyle(KODAMTheme.textTertiary)
+                        
+                        // Quantity stepper
+                        HStack(spacing: 0) {
+                            Button {
+                                if quantity > 100 { quantity -= 10 }
+                            } label: {
+                                Image(systemName: "minus")
+                                    .font(KODAMFonts.heading(.headline))
+                                    .frame(width: 44, height: 44)
+                            }
+                            .tint(KODAMTheme.textPrimary)
+
+                            Text("\(quantity) kg")
+                                .font(KODAMFonts.heading(.headline))
+                                .foregroundStyle(KODAMTheme.textPrimary)
+                                .frame(width: 80)
+                                .multilineTextAlignment(.center)
+
+                            Button {
+                                quantity += 10
+                            } label: {
+                                Image(systemName: "plus")
+                                    .font(KODAMFonts.heading(.headline))
+                                    .frame(width: 44, height: 44)
+                            }
+                            .tint(KODAMTheme.textPrimary)
+                        }
+                        .background(
+                            RoundedRectangle(cornerRadius: KODAMTheme.radiusSM)
+                                .strokeBorder(KODAMTheme.cardBorder, lineWidth: 1)
+                        )
+                    }
+                    Spacer()
+                }
+            }
+        }
+    }
+
     // MARK: - Purchase Bar
     private var purchaseBar: some View {
         VStack(spacing: 0) {
             Divider()
 
-            HStack(spacing: KODAMTheme.spacingLG) {
-                // Minimum + Price
-                VStack(alignment: .leading, spacing: 4) {
-                    Text("MIN. PEMBELIAN")
-                        .font(KODAMFonts.body(.captionSmall))
-                        .foregroundStyle(KODAMTheme.textTertiary)
-
-                    HStack(spacing: 4) {
-                        Text("HARGA /KG")
-                            .font(KODAMFonts.body(.captionSmall))
-                            .foregroundStyle(KODAMTheme.textTertiary)
-                        Text(lot.pricePerKg.formattedRupiah())
-                            .font(KODAMFonts.heading(.headline))
-                            .foregroundStyle(KODAMTheme.textPrimary)
-                    }
+            HStack(spacing: KODAMTheme.spacingMD) {
+                // Tambah Keranjang Button
+                Button {
+                    // Add to cart action
+                } label: {
+                    Text("Tambahkan Keranjang")
+                        .font(KODAMFonts.heading(.headline))
+                        .foregroundStyle(KODAMTheme.espressoAccent)
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, KODAMTheme.spacingMD)
+                        .background(
+                            RoundedRectangle(cornerRadius: KODAMTheme.radiusLG)
+                                .strokeBorder(KODAMTheme.espressoAccent, lineWidth: 2)
+                        )
                 }
-
-                Spacer()
-
-                // Quantity stepper
-                HStack(spacing: 0) {
-                    Button {
-                        if quantity > 100 { quantity -= 10 }
-                    } label: {
-                        Image(systemName: "minus")
-                            .font(KODAMFonts.heading(.headline))
-                            .frame(width: 32, height: 32)
-                    }
-                    .tint(KODAMTheme.textPrimary)
-
-                    Text("\(quantity) kg")
-                        .font(KODAMFonts.body(.caption))
-                        .foregroundStyle(KODAMTheme.textPrimary)
-                        .frame(width: 56)
-
-                    Button {
-                        quantity += 10
-                    } label: {
-                        Image(systemName: "plus")
-                            .font(KODAMFonts.heading(.headline))
-                            .frame(width: 32, height: 32)
-                    }
-                    .tint(KODAMTheme.textPrimary)
-                }
-                .background(
-                    RoundedRectangle(cornerRadius: KODAMTheme.radiusSM)
-                        .strokeBorder(KODAMTheme.cardBorder, lineWidth: 1)
-                )
 
                 // Buy button
                 Button {
@@ -557,10 +584,10 @@ struct BuyerProductDetailView: View {
                     Text("Beli Sekarang")
                         .font(KODAMFonts.heading(.headline))
                         .foregroundStyle(.white)
-                        .padding(.horizontal, KODAMTheme.spacingXL)
+                        .frame(maxWidth: .infinity)
                         .padding(.vertical, KODAMTheme.spacingMD)
                         .background(
-                            Capsule()
+                            RoundedRectangle(cornerRadius: KODAMTheme.radiusLG)
                                 .fill(KODAMTheme.espressoAccent)
                         )
                 }

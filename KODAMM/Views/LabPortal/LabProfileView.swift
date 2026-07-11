@@ -108,7 +108,7 @@ struct LabProfileView: View {
 
                         // Keluar Button
                         Button(action: {
-                            // Keluar Action
+                            NotificationCenter.default.post(name: NSNotification.Name("Logout"), object: nil)
                         }) {
                             HStack {
                                 Image(systemName: "rectangle.portrait.and.arrow.right")

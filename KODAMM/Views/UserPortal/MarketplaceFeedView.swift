@@ -39,12 +39,13 @@ struct MarketplaceFeedView: View {
 
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack(spacing: KODAMTheme.spacingLG) {
-                        // Custom Navigation Bar
-                        KODAMNavigationBar(
-                            title: "KODAM",
-                            showAvatar: true,
-                            trailingIcon: "sparkle"
-                        )
+                        // Title
+                        Text("Pasar")
+                            .font(KODAMFonts.heading(.largeTitle))
+                            .foregroundStyle(KODAMTheme.textPrimary)
+                            .padding(.horizontal, KODAMTheme.spacingLG)
+                            .padding(.top, KODAMTheme.spacingLG)
+                            .frame(maxWidth: .infinity, alignment: .leading)
 
                         // Search Bar
                         KODAMSearchBar(text: $searchText)
@@ -59,7 +60,7 @@ struct MarketplaceFeedView: View {
                         // Coffee Lot Cards
                         LazyVStack(spacing: KODAMTheme.spacingXL) {
                             ForEach(filteredLots) { lot in
-                                NavigationLink(value: lot) {
+                                NavigationLink(destination: BuyerProductDetailView(lot: lot)) {
                                     CoffeeLotCard(lot: lot)
                                 }
                                 .buttonStyle(.plain)
@@ -73,9 +74,6 @@ struct MarketplaceFeedView: View {
                 }
             }
             .navigationBarHidden(true)
-            .navigationDestination(for: CoffeeLot.self) { lot in
-                BuyerProductDetailView(lot: lot)
-            }
         }
     }
 }

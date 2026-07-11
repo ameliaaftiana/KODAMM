@@ -27,24 +27,21 @@ struct CoopCommodityRequestsView: View {
                             .font(KODAMFonts.heading(.title3).weight(.bold))
                             .foregroundStyle(KODAMTheme.textPrimary)
                     }
-                    
                     Spacer()
-                    
-                    Text("Permintaan Anggota")
-                        .font(KODAMFonts.heading(.title2))
-                        .foregroundStyle(KODAMTheme.textPrimary)
-                    
-                    Spacer()
-                    
-                    // Invisible placeholder for alignment
-                    Image(systemName: "chevron.left")
-                        .opacity(0)
                 }
                 .padding(.horizontal, KODAMTheme.spacingLG)
-                .padding(.bottom, KODAMTheme.spacingMD)
+                .padding(.bottom, KODAMTheme.spacingSM)
+                
+                Text("Permintaan Anggota")
+                    .font(KODAMFonts.heading(.largeTitle))
+                    .foregroundStyle(KODAMTheme.textPrimary)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.horizontal, KODAMTheme.spacingLG)
+                    .padding(.bottom, KODAMTheme.spacingMD)
                 
                 // Tabs
                 TextTabRow(tabs: tabs, selectedTab: $selectedTab, justified: true)
+                    .padding(.horizontal, KODAMTheme.spacingLG)
                     .padding(.top, KODAMTheme.spacingMD)
                 
                 ScrollView(showsIndicators: false) {

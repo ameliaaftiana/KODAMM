@@ -147,7 +147,7 @@ struct CoopDashboardView: View {
                                 .clipShape(RoundedRectangle(cornerRadius: KODAMTheme.radiusMD))
                             }
 
-                            NavigationLink(destination: CoopMembersListView()) {
+                            NavigationLink(destination: CoopMembersView()) {
                                 HStack {
                                     Image(systemName: "person.3.fill")
                                     Text("Daftar Anggota")
