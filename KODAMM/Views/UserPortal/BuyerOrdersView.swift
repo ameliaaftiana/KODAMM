@@ -5,6 +5,7 @@ import SwiftUI
 /// Shows status filter tabs and order cards.
 struct BuyerOrdersView: View {
     @State private var selectedTab = "Sedang Proses"
+    @State private var showScanner = false
 
     private let tabs = ["Semua", "Sedang Proses", "Selesai", "Dibatalkan"]
 
@@ -42,6 +43,42 @@ struct BuyerOrdersView: View {
                             selectedTab: $selectedTab
                         )
                         .padding(.horizontal, KODAMTheme.spacingLG)
+                        
+                        // Spot Check CTA for completed/in-transit orders
+                        if selectedTab == "Selesai" || selectedTab == "Sedang Proses" {
+                            GlassCard {
+                                VStack(alignment: .leading, spacing: KODAMTheme.spacingSM) {
+                                    HStack {
+                                        Image(systemName: "camera.viewfinder")
+                                            .font(KODAMFonts.heading(.title3))
+                                            .foregroundStyle(KODAMTheme.espressoAccent)
+                                        Text("Spot Check Kualitas (AI)")
+                                            .font(KODAMFonts.heading(.headline))
+                                        Spacer()
+                                    }
+                                    
+                                    Text("Pesanan sudah tiba? Lakukan pemindaian acak dengan AI untuk verifikasi grade SNI.")
+                                        .font(KODAMFonts.body(.bodySmall))
+                                        .foregroundStyle(KODAMTheme.textSecondary)
+                                    
+                                    Button {
+                                        showScanner = true
+                                    } label: {
+                                        Text("Lakukan Spot Check (AI Scan)")
+                                            .font(KODAMFonts.heading(.headline))
+                                            .foregroundStyle(.white)
+                                            .frame(maxWidth: .infinity)
+                                            .padding(.vertical, KODAMTheme.spacingMD)
+                                            .background(
+                                                RoundedRectangle(cornerRadius: KODAMTheme.radiusMD)
+                                                    .fill(KODAMTheme.espressoAccent)
+                                            )
+                                    }
+                                    .padding(.top, 4)
+                                }
+                            }
+                            .padding(.horizontal, KODAMTheme.spacingLG)
+                        }
 
                         // Order Cards
                         if filteredOrders.isEmpty {
@@ -60,6 +97,9 @@ struct BuyerOrdersView: View {
                 }
             }
             .navigationBarHidden(true)
+            .fullScreenCover(isPresented: $showScanner) {
+                BeanQualityScannerView()
+            }
         }
     }
 
