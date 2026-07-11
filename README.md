@@ -7,6 +7,15 @@ This project is developed for the **Hackathon Digital Cooperatives Expo 2026** (
 
 **Commodity Focus**: Green Coffee Beans (Biji Kopi) with specialty grading (SNI 01-2907-2008 & SCA standard: moisture ~10-12%, defect beans, cupping score 85+).
 
+## App Screenshots
+
+<p align="center">
+  <img src="Images/iPhone%2017%20Pro%20Silver.png" width="22%" />
+  <img src="Images/iPhone%2017%20Pro%20Silver%20(1).png" width="22%" />
+  <img src="Images/iPhone%2017%20Pro%20Silver%20(2).png" width="22%" />
+  <img src="Images/iPhone%2017%20Pro%20Silver%20(3).png" width="22%" />
+</p>
+
 ## System Requirements
 *   **Operating System**: macOS 14.0+ (for development)
 *   **Target Device OS**: iOS 17.0+
