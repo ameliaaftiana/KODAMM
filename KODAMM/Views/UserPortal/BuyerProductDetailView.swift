@@ -430,8 +430,8 @@ struct BuyerProductDetailView: View {
             }
 
             // See all link
-            Button {
-                // Show all reviews
+            NavigationLink {
+                ProductReviewsRatingsView(reviews: SampleData.reviews)
             } label: {
                 HStack {
                     Text("Lihat Semua Ulasan")
