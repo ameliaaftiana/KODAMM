@@ -9,17 +9,11 @@ struct CoopOrderCard: View {
             VStack(alignment: .leading, spacing: 0) {
                 // Product Image Banner
                 ZStack(alignment: .topTrailing) {
-                    Rectangle()
-                        .fill(KODAMTheme.cardBorder)
+                    Image(order.imageName)
+                        .resizable()
+                        .scaledToFill()
                         .frame(height: 140)
-                        .overlay {
-                            // Mocking the image using a gradient since asset might not exist
-                            LinearGradient(
-                                colors: [KODAMTheme.coffeeGradientStart, KODAMTheme.coffeeGradientEnd],
-                                startPoint: .topLeading,
-                                endPoint: .bottomTrailing
-                            )
-                        }
+                        .clipped()
 
                     // Request Date Badge (Req: 24 Okt)
                     Text("Req: \(order.requestDate)")

@@ -178,6 +178,22 @@ struct CoopProfileView: View {
                                 }
                             }
                         }
+                        
+                        // Logout
+                        Button {
+                            NotificationCenter.default.post(name: NSNotification.Name("Logout"), object: nil)
+                        } label: {
+                            Text("Keluar")
+                                .font(KODAMFonts.heading(.headline))
+                                .foregroundStyle(KODAMTheme.destructiveRed)
+                                .frame(maxWidth: .infinity)
+                                .padding(.vertical, KODAMTheme.spacingLG)
+                                .background(
+                                    RoundedRectangle(cornerRadius: KODAMTheme.radiusLG)
+                                        .fill(KODAMTheme.destructiveRed.opacity(0.1))
+                                )
+                        }
+                        .padding(.top, KODAMTheme.spacingMD)
                     }
                     .padding(.horizontal, KODAMTheme.spacingLG)
                     .padding(.vertical, KODAMTheme.spacingMD)

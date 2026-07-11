@@ -58,9 +58,7 @@ struct UserChatListView: View {
                         // Conversation List
                         LazyVStack(spacing: 0) {
                             ForEach(filteredConversations) { conversation in
-                                NavigationLink {
-                                    UserChatDetailView(conversation: conversation)
-                                } label: {
+                                NavigationLink(destination: UserChatDetailView(conversation: conversation)) {
                                     VStack(spacing: 0) {
                                         ChatRowCard(conversation: conversation)
 

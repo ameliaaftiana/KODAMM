@@ -88,29 +88,12 @@ struct CoopLotDetailView: View {
     // MARK: - Hero Image Section
     private var heroImageSection: some View {
         ZStack(alignment: .bottomLeading) {
-            Rectangle()
-                .fill(
-                    LinearGradient(
-                        colors: [KODAMTheme.coffeeGradientStart, KODAMTheme.coffeeGradientMid, KODAMTheme.coffeeGradientEnd],
-                        startPoint: .topLeading,
-                        endPoint: .bottomTrailing
-                    )
-                )
+            Image(lot.imageName)
+                .resizable()
+                .scaledToFill()
                 .frame(height: 280)
-                .overlay {
-                    // Decorative coffee plant overlay
-                    VStack {
-                        Spacer()
-                        HStack {
-                            Spacer()
-                            Image(systemName: "leaf.fill")
-                                .font(KODAMFonts.heading(.largeTitle))
-                                .foregroundStyle(.white.opacity(0.08))
-                                .rotationEffect(.degrees(25))
-                                .offset(x: 20, y: 20)
-                        }
-                    }
-                }
+                .clipped()
+                .overlay(Color.black.opacity(0.1))
 
             // Badges overlay
             HStack(spacing: KODAMTheme.spacingXS) {

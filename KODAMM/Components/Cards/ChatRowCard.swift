@@ -8,10 +8,7 @@ struct ChatRowCard: View {
     var onTap: (() -> Void)? = nil
 
     var body: some View {
-        Button {
-            onTap?()
-        } label: {
-            HStack(spacing: KODAMTheme.spacingMD) {
+        HStack(spacing: KODAMTheme.spacingMD) {
                 // Avatar with online indicator
                 ZStack(alignment: .bottomLeading) {
                     Circle()
@@ -94,8 +91,6 @@ struct ChatRowCard: View {
                 }
             }
             .padding(.vertical, KODAMTheme.spacingSM)
-        }
-        .buttonStyle(.plain)
     }
 
     private var avatarColors: [Color] {

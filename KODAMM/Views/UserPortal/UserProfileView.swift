@@ -46,7 +46,7 @@ struct UserProfileView: View {
 
                         // Logout
                         Button {
-                            // Logout action
+                            NotificationCenter.default.post(name: NSNotification.Name("Logout"), object: nil)
                         } label: {
                             Text("Keluar")
                                 .font(KODAMFonts.heading(.headline))
