@@ -14,26 +14,6 @@ struct LabProfileView: View {
 
                 ScrollView {
                     VStack(alignment: .leading, spacing: KODAMTheme.spacingLG) {
-                        
-                        // Header Title
-                        HStack {
-                            Spacer()
-                            Text("KODAM Lab")
-                                .font(KODAMFonts.heading(.title3))
-                                .foregroundStyle(KODAMTheme.textPrimary)
-                            Spacer()
-                        }
-                        .overlay(
-                            Button(action: {}) {
-                                Image(systemName: "gearshape")
-                                    .font(KODAMFonts.heading(.title2))
-                                    .foregroundStyle(KODAMTheme.textSecondary)
-                            }
-                            , alignment: .trailing
-                        )
-                        .padding(.horizontal)
-                        .padding(.top)
-
                         // Profile Header Card
                         GlassCard(padding: KODAMTheme.spacingXL) {
                             VStack(spacing: KODAMTheme.spacingMD) {

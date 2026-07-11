@@ -13,27 +13,9 @@ struct LabAntreanView: View {
                     VStack(alignment: .leading, spacing: KODAMTheme.spacingLG) {
                         // Header
                         VStack(alignment: .leading, spacing: 4) {
-                            HStack(spacing: 8) {
-                                Image(systemName: "chart.bar.doc.horizontal")
-                                    .font(KODAMFonts.heading(.title2))
-                                Text("KODAM Lab")
-                                    .font(KODAMFonts.heading(.title3))
-                            }
-                            .foregroundStyle(KODAMTheme.textPrimary)
-                            .padding(.bottom, KODAMTheme.spacingSM)
-                            
                             Text("Antrean Pengajuan")
                                 .font(KODAMFonts.heading(.largeTitle))
                                 .foregroundStyle(KODAMTheme.textPrimary)
-
-                            Text("\(SampleData.labRequests.count) Permintaan Baru")
-                                .font(KODAMFonts.body(.caption))
-                                .foregroundStyle(KODAMTheme.textPrimary)
-                                .padding(.horizontal, KODAMTheme.spacingMD)
-                                .padding(.vertical, KODAMTheme.spacingXS)
-                                .background(KODAMTheme.oliveGreen.opacity(0.15))
-                                .cornerRadius(KODAMTheme.radiusMD)
-                                .padding(.top, KODAMTheme.spacingXS)
                         }
                         .padding(.horizontal)
                         .padding(.top)
