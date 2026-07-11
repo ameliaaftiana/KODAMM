@@ -23,9 +23,9 @@ struct MemberCommodityRequestsView: View {
                         } label: {
                             Image(systemName: "plus")
                                 .font(KODAMFonts.heading(.title3).weight(.bold))
-                                .foregroundStyle(.white)
-                                .padding(12)
-                                .background(KODAMTheme.oliveGreen)
+                                .foregroundStyle(KODAMTheme.emeraldGreen)
+                                .padding(KODAMTheme.spacingMD)
+                                .background(.ultraThinMaterial)
                                 .clipShape(Circle())
                         }
                     }
@@ -52,8 +52,8 @@ struct MemberCommodityRequestsView: View {
                                                 Text(request.status.rawValue)
                                                     .font(KODAMFonts.body(.captionSmall))
                                                     .foregroundStyle(Color(request.status.colorName))
-                                                    .padding(.horizontal, 10)
-                                                    .padding(.vertical, 4)
+                                                    .padding(.horizontal, KODAMTheme.spacingSM)
+                                                    .padding(.vertical, KODAMTheme.spacingXS)
                                                     .background(Color(request.status.colorName).opacity(0.1))
                                                     .clipShape(Capsule())
                                             }
@@ -86,7 +86,7 @@ struct MemberCommodityRequestsView: View {
                             }
                         }
                         .padding(.horizontal, KODAMTheme.spacingLG)
-                        .padding(.bottom, 120)
+                        .padding(.bottom, KODAMTheme.spacing3XL)
                     }
                 }
             }

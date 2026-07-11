@@ -94,10 +94,10 @@ struct LabProcessingCard: View {
                         Text("Perbarui Status")
                             .font(KODAMFonts.heading(.headline))
                     }
-                    .foregroundStyle(KODAMTheme.textPrimary)
+                    .foregroundStyle(KODAMTheme.cardWhite)
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, KODAMTheme.spacingSM)
-                    .background(KODAMTheme.oliveGreen.opacity(0.15))
+                    .background(KODAMTheme.primaryColor)
                     .cornerRadius(KODAMTheme.radiusMD)
                 }
                 .padding(.top, KODAMTheme.spacingXS)

@@ -31,7 +31,7 @@ struct LabAntreanView: View {
                             }
                         }
                         .padding(.horizontal)
-                        .padding(.bottom, 100)
+                        .padding(.bottom, KODAMTheme.spacing3XL)
                     }
                 }
             }

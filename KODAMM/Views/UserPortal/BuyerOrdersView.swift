@@ -49,7 +49,12 @@ struct BuyerOrdersView: View {
                         } else {
                             LazyVStack(spacing: KODAMTheme.spacingLG) {
                                 ForEach(filteredOrders) { order in
-                                    OrderCard(order: order)
+                                    NavigationLink {
+                                        BuyerOrderDetailView(order: order)
+                                    } label: {
+                                        OrderCard(order: order)
+                                    }
+                                    .buttonStyle(.plain)
                                 }
                             }
                             .padding(.horizontal, KODAMTheme.spacingLG)

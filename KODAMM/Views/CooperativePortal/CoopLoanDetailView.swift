@@ -143,14 +143,14 @@ struct CoopLoanDetailView: View {
                             }) {
                                 Text("Unduh Rekap")
                                     .font(KODAMFonts.heading(.headline))
-                                    .foregroundStyle(KODAMTheme.espressoAccent)
+                                    .foregroundStyle(KODAMTheme.cardWhite)
                                     .frame(maxWidth: .infinity)
                                     .padding(.vertical, KODAMTheme.spacingLG)
-                                    .background(Color.clear)
+                                    .background(Color(KODAMTheme.primaryColor))
                                     .clipShape(RoundedRectangle(cornerRadius: KODAMTheme.radiusMD))
                                     .overlay(
                                         RoundedRectangle(cornerRadius: KODAMTheme.radiusMD)
-                                            .strokeBorder(KODAMTheme.espressoAccent, lineWidth: 1.5)
+                                            .strokeBorder(KODAMTheme.primaryColor, lineWidth: 1.5)
                                     )
                             }
                         }

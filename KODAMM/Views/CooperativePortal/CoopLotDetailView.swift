@@ -67,14 +67,14 @@ struct CoopLotDetailView: View {
                         Image(systemName: "chevron.left")
                             .font(KODAMFonts.heading(.title3).weight(.bold))
                             .foregroundStyle(.white)
-                            .padding(12)
+                            .padding(KODAMTheme.spacingMD)
                             .background(KODAMTheme.obsidianDark.opacity(0.4))
                             .clipShape(Circle())
                     }
                     Spacer()
                 }
                 .padding(.horizontal, KODAMTheme.spacingLG)
-                .padding(.top, 60)
+                .padding(.top, KODAMTheme.spacing3XL)
                 Spacer()
             }
         }
@@ -93,7 +93,7 @@ struct CoopLotDetailView: View {
                 .scaledToFill()
                 .frame(height: 280)
                 .clipped()
-                .overlay(Color.black.opacity(0.1))
+                .overlay(KODAMTheme.obsidianDark.opacity(0.1))
 
             // Badges overlay
             HStack(spacing: KODAMTheme.spacingXS) {
@@ -651,7 +651,7 @@ struct CoopLotDetailView: View {
                                 // send action
                             } label: {
                                 Image(systemName: "paperplane.fill")
-                                    .font(.system(size: 20))
+                                    .font(KODAMFonts.heading(.title2))
                                     .foregroundStyle(.white)
                                     .padding(KODAMTheme.spacingMD)
                                     .background(KODAMTheme.espressoAccent)

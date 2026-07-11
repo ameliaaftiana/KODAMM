@@ -43,7 +43,7 @@ struct CoopLabTestsView: View {
                         }
                         .padding(.horizontal, KODAMTheme.spacingLG)
                         .padding(.top, KODAMTheme.spacingMD)
-                        .padding(.bottom, 100)
+                        .padding(.bottom, KODAMTheme.spacing3XL)
                     }
                 }
             }
@@ -58,7 +58,7 @@ struct CoopLabTestsView: View {
                 HStack {
                     Image(systemName: "flask.fill")
                         .foregroundStyle(KODAMTheme.scientificCyan)
-                        .padding(8)
+                        .padding(KODAMTheme.spacingSM)
                         .background(KODAMTheme.scientificCyan.opacity(0.1))
                         .clipShape(Circle())
                     
@@ -76,8 +76,8 @@ struct CoopLabTestsView: View {
                     Text(test.status)
                         .font(KODAMFonts.body(.captionSmall))
                         .foregroundStyle(test.status == "Selesai" ? KODAMTheme.emeraldGreen : KODAMTheme.amberGold)
-                        .padding(.horizontal, 10)
-                        .padding(.vertical, 4)
+                        .padding(.horizontal, KODAMTheme.spacingSM)
+                        .padding(.vertical, KODAMTheme.spacingXS)
                         .background((test.status == "Selesai" ? KODAMTheme.emeraldGreen : KODAMTheme.amberGold).opacity(0.1))
                         .clipShape(Capsule())
                 }

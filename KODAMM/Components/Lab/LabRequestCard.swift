@@ -69,7 +69,7 @@ struct LabRequestCard: View {
                                     Text(type)
                                         .font(KODAMFonts.body(.captionSmall))
                                         .foregroundStyle(KODAMTheme.textSecondary)
-                                        .padding(.horizontal, 6)
+                                        .padding(.horizontal, KODAMTheme.spacingXS)
                                         .padding(.vertical, KODAMTheme.spacingXS)
                                         .background(KODAMTheme.warmIvory)
                                         .cornerRadius(4)
@@ -90,7 +90,7 @@ struct LabRequestCard: View {
                         .foregroundStyle(.white)
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, KODAMTheme.spacingSM)
-                        .background(KODAMTheme.espressoAccent)
+                        .background(KODAMTheme.primaryColor)
                         .cornerRadius(KODAMTheme.radiusMD)
                 }
                 .padding(.top, KODAMTheme.spacingSM)

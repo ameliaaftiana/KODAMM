@@ -10,18 +10,19 @@ struct MemberLoanDetailView: View {
             
             VStack(spacing: 0) {
                 // Header
-                HStack {
-                    Button { dismiss() } label: {
-                        Image(systemName: "chevron.left")
-                            .font(KODAMFonts.heading(.title3).weight(.bold))
-                            .foregroundStyle(KODAMTheme.textPrimary)
+                VStack(alignment: .leading, spacing: KODAMTheme.spacingSM) {
+                    HStack {
+                        Button { dismiss() } label: {
+                            Image(systemName: "chevron.left")
+                                .font(KODAMFonts.heading(.title3).weight(.bold))
+                                .foregroundStyle(KODAMTheme.textPrimary)
+                        }
+                        Spacer()
                     }
-                    Spacer()
+                    
                     Text("Detail Pinjaman")
-                        .font(KODAMFonts.heading(.title2))
+                        .font(KODAMFonts.heading(.largeTitle))
                         .foregroundStyle(KODAMTheme.textPrimary)
-                    Spacer()
-                    Image(systemName: "chevron.left").opacity(0)
                 }
                 .padding(.horizontal, KODAMTheme.spacingLG)
                 .padding(.bottom, KODAMTheme.spacingMD)
@@ -40,8 +41,8 @@ struct MemberLoanDetailView: View {
                                     Text(loan.status)
                                         .font(KODAMFonts.body(.captionSmall))
                                         .foregroundStyle(loan.status == "Aktif" ? KODAMTheme.amberGold : KODAMTheme.emeraldGreen)
-                                        .padding(.horizontal, 10)
-                                        .padding(.vertical, 4)
+                                        .padding(.horizontal, KODAMTheme.spacingSM)
+                                        .padding(.vertical, KODAMTheme.spacingXS)
                                         .background((loan.status == "Aktif" ? KODAMTheme.amberGold : KODAMTheme.emeraldGreen).opacity(0.1))
                                         .clipShape(Capsule())
                                 }
@@ -83,7 +84,7 @@ struct MemberLoanDetailView: View {
                                     }
                                 }
                                 .frame(height: 8)
-                                .padding(.top, 4)
+                                .padding(.top, KODAMTheme.spacingXS)
                             }
                         }
                         .padding(.horizontal, KODAMTheme.spacingLG)
@@ -106,7 +107,7 @@ struct MemberLoanDetailView: View {
                                                 .overlay {
                                                     if item.isCompleted {
                                                         Image(systemName: "checkmark")
-                                                            .font(.system(size: 10, weight: .bold))
+                                                            .font(KODAMFonts.body(.captionSmall))
                                                             .foregroundStyle(.white)
                                                     }
                                                 }
@@ -132,7 +133,7 @@ struct MemberLoanDetailView: View {
                             .padding(.horizontal, KODAMTheme.spacingLG)
                         }
                     }
-                    .padding(.bottom, 40)
+                    .padding(.bottom, KODAMTheme.spacing3XL)
                 }
             }
         }

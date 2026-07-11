@@ -72,7 +72,7 @@ struct CoopOrderCard: View {
                     }
                     
                     Divider()
-                        .padding(.vertical, 4)
+                        .padding(.vertical, KODAMTheme.spacingXS)
                     
                     // Deadline Section
                     HStack {
@@ -97,7 +97,7 @@ struct CoopOrderCard: View {
                                 .font(KODAMFonts.heading(.headline))
                                 .frame(maxWidth: .infinity)
                                 .padding(.vertical, KODAMTheme.spacingMD)
-                                .background(KODAMTheme.oliveGreen)
+                                .background(KODAMTheme.primaryColor)
                                 .foregroundStyle(.white)
                                 .clipShape(RoundedRectangle(cornerRadius: KODAMTheme.radiusSM))
                         }

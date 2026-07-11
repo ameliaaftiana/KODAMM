@@ -42,7 +42,7 @@ struct CoopMembersView: View {
                     Text("\(SampleData.coopMembers.count) Anggota")
                         .font(KODAMFonts.body(.body))
                         .foregroundStyle(KODAMTheme.textSecondary)
-                        .padding(.bottom, 6) // Align baseline visually
+                        .padding(.bottom, KODAMTheme.spacingXS) // Align baseline visually
                 }
                 .padding(.horizontal, KODAMTheme.spacingLG)
                 .padding(.top, KODAMTheme.spacingMD)

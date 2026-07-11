@@ -21,7 +21,7 @@ struct CoopCreateProductView: View {
                         Image(systemName: "chevron.left")
                             .font(KODAMFonts.heading(.title3).weight(.bold))
                             .foregroundStyle(KODAMTheme.textPrimary)
-                            .padding(8)
+                            .padding(KODAMTheme.spacingSM)
                             .background(Circle().fill(KODAMTheme.warmIvory.opacity(0.8)))
                     }
                     Spacer()
@@ -98,7 +98,7 @@ struct CoopCreateProductView: View {
                                     
                                     TextEditor(text: $productDescription)
                                         .frame(height: 80)
-                                        .padding(8)
+                                        .padding(KODAMTheme.spacingSM)
                                         .background(KODAMTheme.warmIvory)
                                         .clipShape(RoundedRectangle(cornerRadius: KODAMTheme.radiusSM))
                                         .overlay(RoundedRectangle(cornerRadius: KODAMTheme.radiusSM).stroke(KODAMTheme.cardBorder, lineWidth: 1))
@@ -179,7 +179,7 @@ struct CoopCreateProductView: View {
                         .padding(.horizontal, KODAMTheme.spacingLG)
                     }
                     .padding(.top, KODAMTheme.spacingSM)
-                    .padding(.bottom, 120)
+                    .padding(.bottom, KODAMTheme.spacing3XL)
                 }
             }
             
@@ -196,7 +196,7 @@ struct CoopCreateProductView: View {
                                 .font(KODAMFonts.heading(.headline))
                                 .frame(maxWidth: .infinity)
                                 .padding(.vertical, KODAMTheme.spacingMD)
-                                .background(KODAMTheme.emeraldGreen)
+                                .background(KODAMTheme.primaryColor)
                                 .foregroundStyle(.white)
                                 .clipShape(RoundedRectangle(cornerRadius: KODAMTheme.radiusSM))
                         }

@@ -64,7 +64,7 @@ struct UserChatListView: View {
 
                                         if conversation.id != filteredConversations.last?.id {
                                             Divider()
-                                                .padding(.leading, 68)
+                                                .padding(.leading, KODAMTheme.spacing3XL)
                                         }
                                     }
                                 }

@@ -7,14 +7,6 @@ struct MemberProfileView: View {
                 KODAMTheme.warmIvory.ignoresSafeArea()
                 
                 VStack(spacing: 0) {
-                    // Title
-                    Text("Profil Saya")
-                        .font(KODAMFonts.heading(.largeTitle))
-                        .foregroundStyle(KODAMTheme.textPrimary)
-                        .padding(.horizontal, KODAMTheme.spacingLG)
-                        .padding(.top, KODAMTheme.spacingLG)
-                        .padding(.bottom, KODAMTheme.spacingMD)
-                        .frame(maxWidth: .infinity, alignment: .leading)
                     
                     ScrollView(showsIndicators: false) {
                         VStack(spacing: KODAMTheme.spacingLG) {
@@ -52,21 +44,13 @@ struct MemberProfileView: View {
                             }
                             
                             // Logout Button
-                            Button {
+                            KODAMButton("Keluar", icon: "rectangle.portrait.and.arrow.right", style: .destructive) {
                                 NotificationCenter.default.post(name: NSNotification.Name("Logout"), object: nil)
-                            } label: {
-                                Text("Keluar")
-                                    .font(KODAMFonts.heading(.headline))
-                                    .frame(maxWidth: .infinity)
-                                    .padding(.vertical, KODAMTheme.spacingMD)
-                                    .background(Color.red.opacity(0.1))
-                                    .foregroundStyle(Color.red)
-                                    .clipShape(RoundedRectangle(cornerRadius: KODAMTheme.radiusSM))
                             }
                             .padding(.top, KODAMTheme.spacingMD)
                         }
                         .padding(.horizontal, KODAMTheme.spacingLG)
-                        .padding(.bottom, 40)
+                        .padding(.bottom, KODAMTheme.spacing3XL)
                     }
                 }
             }

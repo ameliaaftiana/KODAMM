@@ -112,7 +112,7 @@ struct ChatRowCard: View {
             ChatRowCard(conversation: conversation)
             if conversation.id != SampleData.chatConversations.last?.id {
                 Divider()
-                    .padding(.leading, 68)
+                    .padding(.leading, KODAMTheme.spacing3XL)
             }
         }
     }

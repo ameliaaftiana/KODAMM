@@ -8,6 +8,7 @@ struct BuyerProductDetailView: View {
     let lot: CoffeeLot
     @State private var quantity = 100
     @State private var showAISheet = false
+    @State private var navigateToCheckout = false
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {
@@ -75,6 +76,9 @@ struct BuyerProductDetailView: View {
         }
         .navigationBarTitleDisplayMode(.inline)
         .toolbarBackground(KODAMTheme.warmIvory, for: .navigationBar)
+        .navigationDestination(isPresented: $navigateToCheckout) {
+            BuyerCheckoutView()
+        }
         .sheet(isPresented: $showAISheet) {
             aiSheetContent
         }
@@ -88,7 +92,7 @@ struct BuyerProductDetailView: View {
                 .aspectRatio(contentMode: .fill)
                 .frame(height: 280)
                 .clipped()
-                .overlay(Color.black.opacity(0.1))
+                .overlay(KODAMTheme.obsidianDark.opacity(0.1))
 
             // Badges overlay
             HStack(spacing: KODAMTheme.spacingXS) {
@@ -568,28 +572,18 @@ struct BuyerProductDetailView: View {
                 } label: {
                     Text("Tambahkan Keranjang")
                         .font(KODAMFonts.heading(.headline))
-                        .foregroundStyle(KODAMTheme.espressoAccent)
+                        .foregroundStyle(KODAMTheme.primaryColor)
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, KODAMTheme.spacingMD)
                         .background(
-                            RoundedRectangle(cornerRadius: KODAMTheme.radiusLG)
+                            RoundedRectangle(cornerRadius: 8)
                                 .strokeBorder(KODAMTheme.espressoAccent, lineWidth: 2)
                         )
                 }
 
                 // Buy button
-                Button {
-                    // Checkout action
-                } label: {
-                    Text("Beli Sekarang")
-                        .font(KODAMFonts.heading(.headline))
-                        .foregroundStyle(.white)
-                        .frame(maxWidth: .infinity)
-                        .padding(.vertical, KODAMTheme.spacingMD)
-                        .background(
-                            RoundedRectangle(cornerRadius: KODAMTheme.radiusLG)
-                                .fill(KODAMTheme.espressoAccent)
-                        )
+                KODAMButton("Beli Sekarang", icon: "bag.fill") {
+                    navigateToCheckout = true
                 }
                 .sensoryFeedback(.impact(weight: .medium), trigger: quantity)
             }

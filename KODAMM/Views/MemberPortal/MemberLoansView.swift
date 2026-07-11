@@ -37,9 +37,9 @@ struct MemberLoansView: View {
                         } label: {
                             Image(systemName: "plus")
                                 .font(KODAMFonts.heading(.title3).weight(.bold))
-                                .foregroundStyle(.white)
-                                .padding(12)
-                                .background(KODAMTheme.oliveGreen)
+                                .foregroundStyle(KODAMTheme.emeraldGreen)
+                                .padding(KODAMTheme.spacingMD)
+                                .background(.ultraThinMaterial)
                                 .clipShape(Circle())
                         }
                     }
@@ -58,7 +58,7 @@ struct MemberLoansView: View {
                                 Text("Tidak ada data pinjaman.")
                                     .font(KODAMFonts.body(.body))
                                     .foregroundStyle(KODAMTheme.textSecondary)
-                                    .padding(.top, 40)
+                                    .padding(.top, KODAMTheme.spacing3XL)
                             } else {
                                 ForEach(filteredLoans) { loan in
                                     NavigationLink(destination: MemberLoanDetailView(loan: loan)) {
@@ -77,8 +77,8 @@ struct MemberLoansView: View {
                                                     Text(loan.status)
                                                         .font(KODAMFonts.body(.captionSmall))
                                                         .foregroundStyle(loan.status == "Aktif" ? KODAMTheme.amberGold : KODAMTheme.emeraldGreen)
-                                                        .padding(.horizontal, 10)
-                                                        .padding(.vertical, 4)
+                                                        .padding(.horizontal, KODAMTheme.spacingSM)
+                                                        .padding(.vertical, KODAMTheme.spacingXS)
                                                         .background((loan.status == "Aktif" ? KODAMTheme.amberGold : KODAMTheme.emeraldGreen).opacity(0.1))
                                                         .clipShape(Capsule())
                                                 }
@@ -112,7 +112,7 @@ struct MemberLoansView: View {
                             }
                         }
                         .padding(.horizontal, KODAMTheme.spacingLG)
-                        .padding(.bottom, 120)
+                        .padding(.bottom, KODAMTheme.spacing3XL)
                     }
                 }
             }

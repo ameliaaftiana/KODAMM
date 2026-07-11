@@ -84,7 +84,7 @@ struct CoopProfileView: View {
                                     .font(KODAMFonts.heading(.headline))
                                     .frame(maxWidth: .infinity)
                                     .padding(.vertical, KODAMTheme.spacingMD)
-                                    .background(KODAMTheme.oliveGreen)
+                                    .background(KODAMTheme.primaryColor)
                                     .foregroundStyle(.white)
                                     .clipShape(RoundedRectangle(cornerRadius: KODAMTheme.radiusSM))
                                 }
@@ -180,20 +180,10 @@ struct CoopProfileView: View {
                         }
                         
                         // Logout
-                        Button {
+                        KODAMButton("Keluar", icon: "rectangle.portrait.and.arrow.right", style: .destructive) {
                             NotificationCenter.default.post(name: NSNotification.Name("Logout"), object: nil)
-                        } label: {
-                            Text("Keluar")
-                                .font(KODAMFonts.heading(.headline))
-                                .foregroundStyle(KODAMTheme.destructiveRed)
-                                .frame(maxWidth: .infinity)
-                                .padding(.vertical, KODAMTheme.spacingLG)
-                                .background(
-                                    RoundedRectangle(cornerRadius: KODAMTheme.radiusLG)
-                                        .fill(KODAMTheme.destructiveRed.opacity(0.1))
-                                )
                         }
-                        .padding(.top, KODAMTheme.spacingMD)
+                        
                     }
                     .padding(.horizontal, KODAMTheme.spacingLG)
                     .padding(.vertical, KODAMTheme.spacingMD)

@@ -62,7 +62,7 @@ struct MemberCertificateDetailView: View {
                                             .foregroundStyle(KODAMTheme.textSecondary)
                                         Text("84.5")
                                             .font(KODAMFonts.heading(.headline))
-                                            .foregroundStyle(KODAMTheme.amberGold)
+                                            .foregroundStyle(KODAMTheme.primaryColor)
                                     }
                                 }
                             }
@@ -86,7 +86,7 @@ struct MemberCertificateDetailView: View {
                                         if message.isUser { Spacer() }
                                         Text(message.text)
                                             .font(KODAMFonts.body(.bodySmall))
-                                            .padding(10)
+                                            .padding(KODAMTheme.spacingSM)
                                             .background(message.isUser ? KODAMTheme.emeraldGreen : KODAMTheme.cardBorder)
                                             .foregroundStyle(message.isUser ? .white : KODAMTheme.textPrimary)
                                             .clipShape(RoundedRectangle(cornerRadius: KODAMTheme.radiusSM))
@@ -95,15 +95,15 @@ struct MemberCertificateDetailView: View {
                                 }
                             }
                             .padding()
-                            .background(Color.white.opacity(0.5))
+                            .background(KODAMTheme.cardWhite.opacity(0.5))
                             .clipShape(RoundedRectangle(cornerRadius: KODAMTheme.radiusMD))
                             
                             // Input Field
                             HStack {
                                 TextField("Ketik pertanyaan...", text: $chatQuery)
                                     .font(KODAMFonts.body(.bodySmall))
-                                    .padding(.horizontal, 12)
-                                    .padding(.vertical, 10)
+                                    .padding(.horizontal, KODAMTheme.spacingMD)
+                                    .padding(.vertical, KODAMTheme.spacingSM)
                                     .background(Color.white)
                                     .clipShape(RoundedRectangle(cornerRadius: KODAMTheme.radiusSM))
                                 
@@ -120,7 +120,7 @@ struct MemberCertificateDetailView: View {
                                 } label: {
                                     Image(systemName: "paperplane.fill")
                                         .foregroundStyle(.white)
-                                        .padding(10)
+                                        .padding(KODAMTheme.spacingSM)
                                         .background(KODAMTheme.scientificCyan)
                                         .clipShape(Circle())
                                 }
@@ -128,7 +128,7 @@ struct MemberCertificateDetailView: View {
                         }
                     }
                     .padding(.horizontal, KODAMTheme.spacingLG)
-                    .padding(.bottom, 40)
+                    .padding(.bottom, KODAMTheme.spacing3XL)
                 }
             }
         }
