@@ -48,7 +48,7 @@ struct ChatBubble: View {
                         .offset(x: -6)
                 }
             }
-            .padding(.horizontal, 4)
+            .padding(.horizontal, KODAMTheme.spacingXS)
         }
         .padding(.horizontal, KODAMTheme.spacingLG)
     }

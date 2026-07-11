@@ -7,6 +7,7 @@ enum KODAMTheme {
     static let obsidianDark = Color(hex: "1A1817")
     static let espressoAccent = Color(hex: "8B5A2B")
     static let espressoDark = Color(hex: "3C2415")
+    static let primaryColor = Color(hex: "4E342E") // Dark brownish
     static let emeraldGreen = Color(hex: "1F7A53")
     static let oliveGreen = Color(hex: "4A5D23")
     static let amberGold = Color(hex: "D4AF37")

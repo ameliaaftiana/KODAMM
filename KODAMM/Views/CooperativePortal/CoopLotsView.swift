@@ -37,7 +37,7 @@ struct CoopLotsView: View {
                             }
                         }
                         .padding(.horizontal, KODAMTheme.spacingLG)
-                        .padding(.bottom, 100) // Padding for Floating Action Button
+                        .padding(.bottom, KODAMTheme.spacing3XL) // Padding for Floating Action Button
                     }
                 }
                 
@@ -51,7 +51,7 @@ struct CoopLotsView: View {
                                 .font(KODAMFonts.heading(.title2))
                                 .foregroundStyle(.white)
                                 .frame(width: 60, height: 60)
-                                .background(KODAMTheme.oliveGreen)
+                                .background(KODAMTheme.primaryColor)
                                 .clipShape(Circle())
                                 .shadow(color: .black.opacity(0.15), radius: 10, x: 0, y: 4)
                         }

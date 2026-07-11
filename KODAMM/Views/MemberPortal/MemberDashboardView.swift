@@ -20,14 +20,6 @@ struct MemberDashboardView: View {
                                     .foregroundStyle(KODAMTheme.textSecondary)
                             }
                             Spacer()
-                            Circle()
-                                .fill(KODAMTheme.cardBorder)
-                                .frame(width: 50, height: 50)
-                                .overlay {
-                                    Image(systemName: "person.circle.fill")
-                                        .font(.largeTitle)
-                                        .foregroundStyle(KODAMTheme.textSecondary)
-                                }
                         }
                         .padding(.horizontal, KODAMTheme.spacingLG)
                         .padding(.top, KODAMTheme.spacingLG)
@@ -122,7 +114,7 @@ struct MemberDashboardView: View {
                 Image(systemName: icon)
                     .font(.title2)
                     .foregroundStyle(color)
-                    .padding(8)
+                    .padding(KODAMTheme.spacingSM)
                     .background(color.opacity(0.1))
                     .clipShape(Circle())
                 

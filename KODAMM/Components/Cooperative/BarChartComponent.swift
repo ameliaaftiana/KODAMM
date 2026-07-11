@@ -20,7 +20,7 @@ struct BarChartComponent: View {
                         Text("\(Int(item.value * 100))%")
                             .font(KODAMFonts.mono(.caption))
                             .foregroundStyle(item.isHighlighted ? Color.white : KODAMTheme.textSecondary)
-                            .padding(.bottom, 8)
+                            .padding(.bottom, KODAMTheme.spacingSM)
                     }
                 }
                 .frame(height: item.value * height)

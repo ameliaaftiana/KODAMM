@@ -18,6 +18,7 @@ struct BuyerCartView: View {
     ]
     
     @State private var selectAll = true
+    @State private var navigateToCheckout = false
     
     private var totalPrice: Double {
         cartItems.filter({ $0.isSelected }).reduce(0) { $0 + ($1.lot.pricePerKg * Double($1.quantity)) }
@@ -66,6 +67,9 @@ struct BuyerCartView: View {
                 bottomBar()
             }
             .navigationBarHidden(true)
+            .navigationDestination(isPresented: $navigateToCheckout) {
+                BuyerCheckoutView()
+            }
         }
     }
 
@@ -76,13 +80,13 @@ struct BuyerCartView: View {
             // Cooperative Header
             HStack(spacing: 8) {
                 Image(systemName: "storefront")
-                    .font(.system(size: 16))
+                    .font(KODAMFonts.body(.body))
                     .foregroundStyle(KODAMTheme.textSecondary)
                 Text(cooperativeName(for: item.wrappedValue.lot))
                     .font(KODAMFonts.heading(.title3))
                     .foregroundStyle(KODAMTheme.textPrimary)
             }
-            .padding(.horizontal, 4)
+            .padding(.horizontal, KODAMTheme.spacingXS)
             
             // Product Card
             VStack(spacing: 0) {
@@ -113,7 +117,7 @@ struct BuyerCartView: View {
                     VStack(alignment: .leading, spacing: 4) {
                         HStack(spacing: 4) {
                             Image(systemName: "mappin.and.ellipse")
-                                .font(.system(size: 10))
+                                .font(KODAMFonts.body(.captionSmall))
                                 .foregroundStyle(KODAMTheme.textSecondary)
                             Text("\(item.wrappedValue.lot.originDusun), \(item.wrappedValue.lot.province)")
                                 .font(KODAMFonts.body(.captionSmall))
@@ -129,7 +133,7 @@ struct BuyerCartView: View {
                         HStack(alignment: .firstTextBaseline, spacing: 2) {
                             Text("Rp \(Int(item.wrappedValue.lot.pricePerKg).formattedWithSeparator())")
                                 .font(KODAMFonts.heading(.title2))
-                                .foregroundStyle(KODAMTheme.amberGold)
+                                .foregroundStyle(KODAMTheme.primaryColor)
                             Text("/ kg")
                                 .font(KODAMFonts.body(.captionSmall))
                                 .foregroundStyle(KODAMTheme.textSecondary)
@@ -144,8 +148,8 @@ struct BuyerCartView: View {
                                 checkSelectAllState()
                             } label: {
                                 Image(systemName: item.wrappedValue.isSelected ? "checkmark.square.fill" : "square")
-                                    .font(.system(size: 24))
-                                    .foregroundStyle(item.wrappedValue.isSelected ? KODAMTheme.amberGold : KODAMTheme.textSecondary)
+                                    .font(KODAMFonts.heading(.title1))
+                                    .foregroundStyle(item.wrappedValue.isSelected ? KODAMTheme.primaryColor : KODAMTheme.textSecondary)
                             }
                             
                             // Stepper
@@ -156,7 +160,7 @@ struct BuyerCartView: View {
                                     }
                                 } label: {
                                     Image(systemName: "minus")
-                                        .font(.system(size: 14))
+                                        .font(KODAMFonts.body(.bodySmall))
                                         .foregroundStyle(KODAMTheme.textPrimary)
                                 }
                                 
@@ -165,7 +169,7 @@ struct BuyerCartView: View {
                                         .font(KODAMFonts.body(.body))
                                         .foregroundStyle(KODAMTheme.textPrimary)
                                     Text("kg")
-                                        .font(.system(size: 10))
+                                        .font(KODAMFonts.body(.captionSmall))
                                         .foregroundStyle(KODAMTheme.textPrimary)
                                 }
                                 
@@ -173,12 +177,12 @@ struct BuyerCartView: View {
                                     item.wrappedValue.quantity += 10
                                 } label: {
                                     Image(systemName: "plus")
-                                        .font(.system(size: 14))
+                                        .font(KODAMFonts.body(.bodySmall))
                                         .foregroundStyle(KODAMTheme.textPrimary)
                                 }
                             }
-                            .padding(.horizontal, 12)
-                            .padding(.vertical, 6)
+                            .padding(.horizontal, KODAMTheme.spacingMD)
+                            .padding(.vertical, KODAMTheme.spacingXS)
                             .background(Color.white)
                             .clipShape(Capsule())
                             .overlay(
@@ -188,7 +192,7 @@ struct BuyerCartView: View {
                     }
                 }
                 .padding(KODAMTheme.spacingMD)
-                .background(Color.white.opacity(0.4))
+                .background(KODAMTheme.cardWhite.opacity(0.4))
             }
             .clipShape(RoundedRectangle(cornerRadius: KODAMTheme.radiusLG))
             .overlay(
@@ -206,7 +210,7 @@ struct BuyerCartView: View {
                     .frame(width: 40, height: 40)
                     .overlay {
                         Image(systemName: "leaf")
-                            .font(.system(size: 20, weight: .semibold))
+                            .font(KODAMFonts.heading(.title2))
                             .foregroundStyle(KODAMTheme.emeraldGreen)
                     }
                 
@@ -245,7 +249,7 @@ struct BuyerCartView: View {
                         .foregroundStyle(KODAMTheme.textSecondary)
                 }
             }
-            .padding(.top, 8)
+            .padding(.top, KODAMTheme.spacingSM)
         }
         .padding(KODAMTheme.spacingLG)
         .background(
@@ -276,8 +280,8 @@ struct BuyerCartView: View {
                     } label: {
                         HStack {
                             Image(systemName: selectAll ? "checkmark.square.fill" : "square")
-                                .font(.system(size: 20))
-                                .foregroundStyle(selectAll ? KODAMTheme.amberGold : KODAMTheme.textSecondary)
+                                .font(KODAMFonts.heading(.title2))
+                                .foregroundStyle(selectAll ? KODAMTheme.textPrimary : KODAMTheme.textSecondary)
                             Text("Pilih Semua")
                                 .font(KODAMFonts.heading(.headline))
                                 .foregroundStyle(KODAMTheme.textPrimary)
@@ -304,9 +308,9 @@ struct BuyerCartView: View {
                         Text("Checkout (\(totalItemsSelected) Produk)")
                             .font(KODAMFonts.heading(.headline))
                             .foregroundStyle(.white)
-                            .padding(.horizontal, 16)
-                            .padding(.vertical, 12)
-                            .background(KODAMTheme.amberGold)
+                            .padding(.horizontal, KODAMTheme.spacingLG)
+                            .padding(.vertical, KODAMTheme.spacingMD)
+                            .background(KODAMTheme.primaryColor)
                             .clipShape(RoundedRectangle(cornerRadius: KODAMTheme.radiusMD))
                     }
                 }

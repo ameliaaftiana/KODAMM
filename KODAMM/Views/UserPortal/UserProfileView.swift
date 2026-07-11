@@ -45,22 +45,8 @@ struct UserProfileView: View {
                         ])
 
                         // Logout
-                        Button {
+                        KODAMButton("Keluar", icon: "rectangle.portrait.and.arrow.right", style: .destructive) {
                             NotificationCenter.default.post(name: NSNotification.Name("Logout"), object: nil)
-                        } label: {
-                            Text("Keluar")
-                                .font(KODAMFonts.heading(.headline))
-                                .foregroundStyle(KODAMTheme.destructiveRed)
-                                .frame(maxWidth: .infinity)
-                                .padding(.vertical, KODAMTheme.spacingLG)
-                                .background(
-                                    RoundedRectangle(cornerRadius: KODAMTheme.radiusMD)
-                                        .fill(KODAMTheme.cardWhite)
-                                )
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: KODAMTheme.radiusMD)
-                                        .strokeBorder(KODAMTheme.destructiveRed.opacity(0.3), lineWidth: 1)
-                                )
                         }
                         .padding(.horizontal, KODAMTheme.spacingLG)
 
@@ -197,7 +183,7 @@ struct UserProfileView: View {
 
                         if index < items.count - 1 {
                             Divider()
-                                .padding(.leading, 60)
+                                .padding(.leading, KODAMTheme.spacing3XL)
                         }
                     }
                 }

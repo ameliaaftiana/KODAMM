@@ -59,7 +59,7 @@ struct CoopCommodityRequestsView: View {
                     }
                     .padding(.horizontal, KODAMTheme.spacingLG)
                     .padding(.top, KODAMTheme.spacingMD)
-                    .padding(.bottom, 40)
+                    .padding(.bottom, KODAMTheme.spacing3XL)
                 }
             }
         }
@@ -92,8 +92,8 @@ struct CoopCommodityRequestsView: View {
                     Text(request.status.rawValue)
                         .font(KODAMFonts.body(.captionSmall))
                         .foregroundStyle(Color(request.status.colorName))
-                        .padding(.horizontal, 10)
-                        .padding(.vertical, 4)
+                        .padding(.horizontal, KODAMTheme.spacingSM)
+                        .padding(.vertical, KODAMTheme.spacingXS)
                         .background(Color(request.status.colorName).opacity(0.1))
                         .clipShape(Capsule())
                 }
@@ -139,7 +139,7 @@ struct CoopCommodityRequestsView: View {
                             .font(KODAMFonts.heading(.headline))
                             .frame(maxWidth: .infinity)
                             .padding(.vertical, KODAMTheme.spacingMD)
-                            .background(KODAMTheme.emeraldGreen)
+                            .background(KODAMTheme.primaryColor)
                             .foregroundStyle(.white)
                             .clipShape(RoundedRectangle(cornerRadius: KODAMTheme.radiusSM))
                     }

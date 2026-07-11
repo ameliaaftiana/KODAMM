@@ -16,31 +16,9 @@ struct LabArsipView: View {
                     VStack(alignment: .leading, spacing: KODAMTheme.spacingLG) {
                         // Header
                         VStack(alignment: .leading, spacing: 4) {
-                            HStack(spacing: 8) {
-                                Image(systemName: "flask")
-                                    .font(KODAMFonts.heading(.title2))
-                                Text("KODAM Lab")
-                                    .font(KODAMFonts.heading(.title3))
-                            }
-                            .foregroundStyle(KODAMTheme.textPrimary)
-                            .padding(.bottom, KODAMTheme.spacingSM)
-                            
                             Text("Arsip Sertifikat")
                                 .font(KODAMFonts.heading(.largeTitle))
                                 .foregroundStyle(KODAMTheme.textPrimary)
-
-                            Text("156 Sertifikat Terbit")
-                                .font(KODAMFonts.body(.caption))
-                                .foregroundStyle(KODAMTheme.textPrimary)
-                                .padding(.horizontal, KODAMTheme.spacingMD)
-                                .padding(.vertical, KODAMTheme.spacingXS)
-                                .background(KODAMTheme.cardWhite.opacity(0.8))
-                                .cornerRadius(KODAMTheme.radiusMD)
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 12)
-                                        .strokeBorder(KODAMTheme.cardBorder, lineWidth: 1)
-                                )
-                                .padding(.top, KODAMTheme.spacingXS)
                         }
                         .padding(.horizontal)
                         .padding(.top)
@@ -125,7 +103,7 @@ struct LabArsipView: View {
                             .buttonStyle(.plain)
                         }
                         .padding(.horizontal)
-                        .padding(.bottom, 100)
+                        .padding(.bottom, KODAMTheme.spacing3XL)
                     }
                 }
             }

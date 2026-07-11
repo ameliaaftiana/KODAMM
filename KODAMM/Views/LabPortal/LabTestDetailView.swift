@@ -274,7 +274,7 @@ struct LabTestDetailView: View {
                     .foregroundStyle(.white)
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, KODAMTheme.spacingMD)
-                    .background(KODAMTheme.oliveGreen)
+                    .background(KODAMTheme.primaryColor)
                     .cornerRadius(KODAMTheme.radiusMD)
                 }
                 .padding()

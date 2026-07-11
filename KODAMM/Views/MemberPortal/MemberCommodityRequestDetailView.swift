@@ -48,8 +48,8 @@ struct MemberCommodityRequestDetailView: View {
                                     Text(request.status.rawValue)
                                         .font(KODAMFonts.body(.captionSmall))
                                         .foregroundStyle(Color(request.status.colorName))
-                                        .padding(.horizontal, 10)
-                                        .padding(.vertical, 4)
+                                        .padding(.horizontal, KODAMTheme.spacingSM)
+                                        .padding(.vertical, KODAMTheme.spacingXS)
                                         .background(Color(request.status.colorName).opacity(0.1))
                                         .clipShape(Capsule())
                                 }
@@ -104,7 +104,7 @@ struct MemberCommodityRequestDetailView: View {
                             .padding(.horizontal, KODAMTheme.spacingLG)
                         }
                     }
-                    .padding(.bottom, 40)
+                    .padding(.bottom, KODAMTheme.spacing3XL)
                 }
             }
         }

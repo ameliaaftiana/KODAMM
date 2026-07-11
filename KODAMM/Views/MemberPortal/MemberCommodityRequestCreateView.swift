@@ -3,13 +3,12 @@ import SwiftUI
 struct MemberCommodityRequestCreateView: View {
     @Environment(\.dismiss) private var dismiss
     
-    @State private var variety = "Arabica Gayo"
+    @State private var variety = ""
     @State private var quantity = ""
-    @State private var processType = "Washed"
+    @State private var processType = ""
     @State private var description = ""
     
-    let varieties = ["Arabica Gayo", "Arabica Toraja", "Robusta Dampit", "Robusta Lampung"]
-    let processes = ["Washed", "Natural", "Honey", "Semi-Washed"]
+    
     
     var body: some View {
         NavigationView {
@@ -23,14 +22,12 @@ struct MemberCommodityRequestCreateView: View {
                             .font(KODAMFonts.heading(.title2))
                             .foregroundStyle(KODAMTheme.textPrimary)
                         Spacer()
-                        Button("Batal") {
+                        KODAMButton("Batal", style: .secondary, isFullWidth: false) {
                             dismiss()
                         }
-                        .font(KODAMFonts.body(.body).weight(.semibold))
-                        .foregroundStyle(KODAMTheme.oliveGreen)
                     }
                     .padding()
-                    .background(Color.white.opacity(0.8))
+                    .background(KODAMTheme.cardWhite.opacity(0.8))
                     
                     ScrollView(showsIndicators: false) {
                         VStack(spacing: KODAMTheme.spacingLG) {
@@ -39,19 +36,13 @@ struct MemberCommodityRequestCreateView: View {
                                 VStack(alignment: .leading, spacing: KODAMTheme.spacingMD) {
                                     
                                     VStack(alignment: .leading, spacing: 8) {
-                                        Text("Varietas Kopi")
+                                        Text("Varietas")
                                             .font(KODAMFonts.heading(.headline))
                                             .foregroundStyle(KODAMTheme.textPrimary)
-                                        Picker("Varietas", selection: $variety) {
-                                            ForEach(varieties, id: \.self) {
-                                                Text($0)
-                                            }
-                                        }
-                                        .pickerStyle(.menu)
-                                        .padding(.horizontal, 12)
-                                        .padding(.vertical, 8)
-                                        .background(Color.white.opacity(0.5))
-                                        .clipShape(RoundedRectangle(cornerRadius: KODAMTheme.radiusSM))
+                                        TextField("Contoh: Arabica Gayo", text: $variety)
+                                            .padding()
+                                            .background(KODAMTheme.cardWhite.opacity(0.5))
+                                            .clipShape(RoundedRectangle(cornerRadius: KODAMTheme.radiusSM))
                                     }
                                     
                                     VStack(alignment: .leading, spacing: 8) {
@@ -61,7 +52,7 @@ struct MemberCommodityRequestCreateView: View {
                                         TextField("Contoh: 50", text: $quantity)
                                             .keyboardType(.numberPad)
                                             .padding()
-                                            .background(Color.white.opacity(0.5))
+                                            .background(KODAMTheme.cardWhite.opacity(0.5))
                                             .clipShape(RoundedRectangle(cornerRadius: KODAMTheme.radiusSM))
                                     }
                                     
@@ -69,16 +60,10 @@ struct MemberCommodityRequestCreateView: View {
                                         Text("Jenis Proses")
                                             .font(KODAMFonts.heading(.headline))
                                             .foregroundStyle(KODAMTheme.textPrimary)
-                                        Picker("Proses", selection: $processType) {
-                                            ForEach(processes, id: \.self) {
-                                                Text($0)
-                                            }
-                                        }
-                                        .pickerStyle(.menu)
-                                        .padding(.horizontal, 12)
-                                        .padding(.vertical, 8)
-                                        .background(Color.white.opacity(0.5))
-                                        .clipShape(RoundedRectangle(cornerRadius: KODAMTheme.radiusSM))
+                                        TextField("Contoh: Full Washed", text: $processType)
+                                            .padding()
+                                            .background(KODAMTheme.cardWhite.opacity(0.5))
+                                            .clipShape(RoundedRectangle(cornerRadius: KODAMTheme.radiusSM))
                                     }
                                     
                                     VStack(alignment: .leading, spacing: 8) {
@@ -87,23 +72,44 @@ struct MemberCommodityRequestCreateView: View {
                                             .foregroundStyle(KODAMTheme.textPrimary)
                                         TextEditor(text: $description)
                                             .frame(height: 100)
-                                            .padding(4)
-                                            .background(Color.white.opacity(0.5))
+                                            .padding(KODAMTheme.spacingXS)
+                                            .background(KODAMTheme.cardWhite.opacity(0.5))
                                             .clipShape(RoundedRectangle(cornerRadius: KODAMTheme.radiusSM))
+                                    }
+                                    
+                                    // Picture Upload Section
+                                    VStack(alignment: .leading, spacing: 8) {
+                                        Text("Unggah Foto Komoditas")
+                                            .font(KODAMFonts.heading(.headline))
+                                            .foregroundStyle(KODAMTheme.textPrimary)
+                                        
+                                        Button {
+                                            // Action for image picker
+                                        } label: {
+                                            VStack(spacing: KODAMTheme.spacingSM) {
+                                                Image(systemName: "camera.fill")
+                                                    .font(KODAMFonts.heading(.largeTitle))
+                                                    .foregroundStyle(KODAMTheme.textSecondary)
+                                                Text("Tap untuk memilih foto")
+                                                    .font(KODAMFonts.body(.bodySmall))
+                                                    .foregroundStyle(KODAMTheme.textSecondary)
+                                            }
+                                            .frame(maxWidth: .infinity)
+                                            .frame(height: 120)
+                                            .background(KODAMTheme.cardWhite.opacity(0.5))
+                                            .overlay(
+                                                RoundedRectangle(cornerRadius: KODAMTheme.radiusSM)
+                                                    .strokeBorder(style: StrokeStyle(lineWidth: 1, dash: [5]))
+                                                    .foregroundStyle(KODAMTheme.textSecondary)
+                                            )
+                                            .clipShape(RoundedRectangle(cornerRadius: KODAMTheme.radiusSM))
+                                        }
                                     }
                                 }
                             }
                             
-                            Button {
+                            KODAMButton("Kirim Permintaan", icon: "paperplane.fill") {
                                 dismiss()
-                            } label: {
-                                Text("Kirim Permintaan")
-                                    .font(KODAMFonts.heading(.headline))
-                                    .frame(maxWidth: .infinity)
-                                    .padding(.vertical, KODAMTheme.spacingMD)
-                                    .background(KODAMTheme.emeraldGreen)
-                                    .foregroundStyle(.white)
-                                    .clipShape(RoundedRectangle(cornerRadius: KODAMTheme.radiusSM))
                             }
                         }
                         .padding(KODAMTheme.spacingLG)

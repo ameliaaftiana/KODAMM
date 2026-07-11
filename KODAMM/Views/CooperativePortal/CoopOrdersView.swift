@@ -53,7 +53,7 @@ struct CoopOrdersView: View {
                                         .font(KODAMFonts.body(.body))
                                         .foregroundStyle(KODAMTheme.textSecondary)
                                 }
-                                .padding(.top, 60)
+                                .padding(.top, KODAMTheme.spacing3XL)
                             } else {
                                 ForEach(filteredOrders) { order in
                                     CoopOrderCard(order: order)

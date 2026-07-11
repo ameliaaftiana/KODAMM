@@ -14,26 +14,6 @@ struct LabProfileView: View {
 
                 ScrollView {
                     VStack(alignment: .leading, spacing: KODAMTheme.spacingLG) {
-                        
-                        // Header Title
-                        HStack {
-                            Spacer()
-                            Text("KODAM Lab")
-                                .font(KODAMFonts.heading(.title3))
-                                .foregroundStyle(KODAMTheme.textPrimary)
-                            Spacer()
-                        }
-                        .overlay(
-                            Button(action: {}) {
-                                Image(systemName: "gearshape")
-                                    .font(KODAMFonts.heading(.title2))
-                                    .foregroundStyle(KODAMTheme.textSecondary)
-                            }
-                            , alignment: .trailing
-                        )
-                        .padding(.horizontal)
-                        .padding(.top)
-
                         // Profile Header Card
                         GlassCard(padding: KODAMTheme.spacingXL) {
                             VStack(spacing: KODAMTheme.spacingMD) {
@@ -107,25 +87,11 @@ struct LabProfileView: View {
                         }
 
                         // Keluar Button
-                        Button(action: {
+                        KODAMButton("Keluar", icon: "rectangle.portrait.and.arrow.right", style: .destructive) {
                             NotificationCenter.default.post(name: NSNotification.Name("Logout"), object: nil)
-                        }) {
-                            HStack {
-                                Image(systemName: "rectangle.portrait.and.arrow.right")
-                                Text("Keluar")
-                                    .font(KODAMFonts.heading(.headline))
-                            }
-                            .foregroundStyle(KODAMTheme.destructiveRed)
-                            .frame(maxWidth: .infinity)
-                            .padding(.vertical, KODAMTheme.spacingMD)
-                            .background(KODAMTheme.cardWhite.opacity(0.8))
-                            .overlay(
-                                RoundedRectangle(cornerRadius: KODAMTheme.radiusMD)
-                                    .strokeBorder(KODAMTheme.cardBorder, lineWidth: 1)
-                            )
                         }
-                        .padding(.horizontal)
-                        .padding(.top, KODAMTheme.spacingLG)
+                        .padding(.horizontal, KODAMTheme.spacingLG)
+                       
                         
                         Spacer().frame(height: 100)
                     }
